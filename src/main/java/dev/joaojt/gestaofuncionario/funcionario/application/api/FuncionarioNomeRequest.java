@@ -1,21 +1,14 @@
 package dev.joaojt.gestaofuncionario.funcionario.application.api;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
-import lombok.Setter;
 
-@Setter
 @Getter
 public class FuncionarioNomeRequest {
 	
-    @Size(min = 3, max = 100)
-    private final String nome;
+    @Size(message = "O nome do funcionário deve ter entre 3 e 100 caracteres.", min = 3, max = 100)
+    @NotBlank(message = "O nome do funcionário não pode ser nulo ou vazio.")
+    private String nome;
     
-    @JsonCreator
-    public FuncionarioNomeRequest(@JsonProperty("nome") String nome) {
-    	this.nome = nome;
-	}
 }

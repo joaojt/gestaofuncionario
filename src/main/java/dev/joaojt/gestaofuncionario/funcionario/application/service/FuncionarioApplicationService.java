@@ -24,7 +24,8 @@ public class FuncionarioApplicationService implements FuncionarioService{
 	@Override
 	public FuncionarioResponse insereFuncionario(FuncionarioNovoRequest novoFuncionario) {
 		log.info("[inicia] FuncionarioApplicationService - insereFuncionario");
-		Funcionario funcionario = new Funcionario(novoFuncionario);
+		Funcionario funcionario = new Funcionario();
+		funcionario.insereFuncionario(novoFuncionario);
 		funcionarioRepository.salvaFuncionario(funcionario);
 		log.info("[finaliza] FuncionarioApplicationService - insereFuncionario");
 		return new FuncionarioResponse(funcionario);
@@ -57,7 +58,7 @@ public class FuncionarioApplicationService implements FuncionarioService{
 	public void editaNomeFuncionario(UUID idFuncionario, FuncionarioNomeRequest nomeFuncionario) {
 		log.info("[inicia] FuncionarioApplicationService - editaNomeFuncionario");
 		Funcionario funcionario = funcionarioRepository.buscaFuncionarioPorId(idFuncionario);
-		funcionario.setNome(nomeFuncionario.getNome());
+		funcionario.editaNomeFuncionario(nomeFuncionario);
 		funcionarioRepository.salvaFuncionario(funcionario);
 		log.info("[finaliza] FuncionarioApplicationService - editaNomeFuncionario");		
 	}
@@ -66,8 +67,8 @@ public class FuncionarioApplicationService implements FuncionarioService{
 	public void editaFuncionario(UUID idFuncionario, FuncionarioCustomRequest funcionarioCustom) {
 		log.info("[inicia] FuncionarioApplicationService - editaFuncionario");
 		Funcionario funcionario = funcionarioRepository.buscaFuncionarioPorId(idFuncionario);
-		Funcionario funcionarioEditado = funcionarioCustomParaFuncionario(funcionario, funcionarioCustom);
-		funcionarioRepository.salvaFuncionario(funcionarioEditado);
+		funcionario.editaFuncionario(funcionarioCustom);
+		funcionarioRepository.salvaFuncionario(funcionario);
 		log.info("[finaliza] FuncionarioApplicationService - editaFuncionario");
 	}
 	
@@ -78,24 +79,5 @@ public class FuncionarioApplicationService implements FuncionarioService{
 		log.info("[finaliza] FuncionarioApplicationService - buscaTodosFuncionarios");
 		return FuncionarioResponse.converter(funcionarios);
 	}	
-
-	private Funcionario funcionarioCustomParaFuncionario(Funcionario funcionario, FuncionarioCustomRequest funcionarioCustom) {
-	    if (funcionarioCustom.getNome() != null) {
-	        funcionario.setNome(funcionarioCustom.getNome());
-	    }
-	    if (funcionarioCustom.getDesignacao() != null) {
-	        funcionario.setDesignacao(funcionarioCustom.getDesignacao());
-	    }
-	    if (funcionarioCustom.getSalario() != null) {
-	        funcionario.setSalario(funcionarioCustom.getSalario());
-	    }
-	    if (funcionarioCustom.getTelefone() != null) {
-	        funcionario.setTelefone(funcionarioCustom.getTelefone());
-	    }
-	    if (funcionarioCustom.getEndereco() != null) {
-	        funcionario.setEndereco(funcionarioCustom.getEndereco());
-	    }
-		return funcionario;
-	}
 	
 }

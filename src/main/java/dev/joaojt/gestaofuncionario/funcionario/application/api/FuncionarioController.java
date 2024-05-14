@@ -66,7 +66,7 @@ public class FuncionarioController implements FuncionarioAPI{
 		log.info("[inicia] FuncionarioController - buscaTodosFuncionarios");			
 		List<FuncionarioResponse> funcionarios = funcionarioService.buscaTodosFuncionarios();
 		log.info("[finaliza] FuncionarioController - buscaTodosFuncionarios");			
-		return funcionarios ;
+		return funcionarios;
 	}
 
 }

@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class AppConfig {
 
+// Não estou utilizando esta classe.
 //    @Bean
 //    ModelMapper modelMapper() {
 //        return new ModelMapper();

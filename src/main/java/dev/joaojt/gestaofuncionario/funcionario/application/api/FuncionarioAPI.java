@@ -1,7 +1,7 @@
 package dev.joaojt.gestaofuncionario.funcionario.application.api;
 
-import java.util.UUID;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
