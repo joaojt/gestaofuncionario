@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class FuncionarioCustomRequest {
 	
-    @Size(message = "O nome do funcionário deve ter entre 3 e 100 caracteres.", min = 3, max = 100)
+    @Size(message = "O nome do funcionário deve ter entre 5 e 50 caracteres.", min = 5, max = 50)
     private String nome;
     private String designacao;
     private Double salario;

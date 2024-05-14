@@ -11,6 +11,7 @@ import dev.joaojt.gestaofuncionario.funcionario.application.api.FuncionarioNovoR
 import dev.joaojt.gestaofuncionario.funcionario.application.api.FuncionarioResponse;
 import dev.joaojt.gestaofuncionario.funcionario.application.repository.FuncionarioRepository;
 import dev.joaojt.gestaofuncionario.funcionario.domain.Funcionario;
+import dev.joaojt.gestaofuncionario.funcionario.infra.FuncionarioRepositoryDB;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
@@ -24,9 +25,7 @@ public class FuncionarioApplicationService implements FuncionarioService{
 	@Override
 	public FuncionarioResponse insereFuncionario(FuncionarioNovoRequest novoFuncionario) {
 		log.info("[inicia] FuncionarioApplicationService - insereFuncionario");
-		Funcionario funcionario = new Funcionario();
-		funcionario.insereFuncionario(novoFuncionario);
-		funcionarioRepository.salvaFuncionario(funcionario);
+		Funcionario funcionario = funcionarioRepository.salvaFuncionario(new Funcionario(novoFuncionario));
 		log.info("[finaliza] FuncionarioApplicationService - insereFuncionario");
 		return new FuncionarioResponse(funcionario);
 	}
